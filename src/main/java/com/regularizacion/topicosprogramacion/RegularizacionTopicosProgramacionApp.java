@@ -15,6 +15,8 @@ import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -78,6 +80,29 @@ public class RegularizacionTopicosProgramacionApp extends Application {
     private final ObservableList<Asesor> asesores = FXCollections.observableArrayList();
     private final ObservableList<OrdenServicio> ordenes = FXCollections.observableArrayList();
 
+    @FXML
+    private TextField loginMail;
+    @FXML
+    private PasswordField loginPassword;
+    @FXML
+    private Button loginButton;
+    @FXML
+    private Button seedButton;
+    @FXML
+    private Label sessionLabel;
+    @FXML
+    private Button refreshButton;
+    @FXML
+    private Tab clientesMainTab;
+    @FXML
+    private Tab automovilesMainTab;
+    @FXML
+    private Tab asesoresMainTab;
+    @FXML
+    private Tab ordenesMainTab;
+    @FXML
+    private Tab reportesMainTab;
+
     @Override
     public void start(Stage stage) {
         this.stage = stage;
@@ -86,31 +111,13 @@ public class RegularizacionTopicosProgramacionApp extends Application {
     }
 
     private void showLogin() {
-        TextField mail = new TextField();
-        PasswordField password = new PasswordField();
-        Button login = new Button("Ingresar");
-        login.getStyleClass().add("primary-button");
-        Button seed = new Button("Crear más datos demo");
-
-        GridPane form = new GridPane();
-        form.setHgap(10);
-        form.setVgap(10);
-        form.addRow(0, new Label("Correo"), mail);
-        form.addRow(1, new Label("Contraseña"), password);
-        form.add(new HBox(8, login, seed), 1, 2);
-
-        VBox card = new VBox(14, title("AutoPrime Servicio", "Acceso de asesores"), form);
-        card.getStyleClass().add("panel");
-        card.setMaxWidth(430);
-
-        StackPane root = new StackPane(card);
-        root.setPadding(new Insets(30));
+        StackPane root = loadFxml("/fxml/login-view.fxml");
         Scene scene = scene(root, 720, 420);
         stage.setScene(scene);
         stage.show();
 
-        login.setOnAction(event -> loginAsync(mail.getText(), password.getText(), login, seed));
-        seed.setOnAction(event -> seedAsync(login, seed));
+        loginButton.setOnAction(event -> loginAsync(loginMail.getText(), loginPassword.getText(), loginButton, seedButton));
+        seedButton.setOnAction(event -> seedAsync(loginButton, seedButton));
     }
 
     private void loginAsync(String mail, String password, Button login, Button seed) {
@@ -188,18 +195,26 @@ public class RegularizacionTopicosProgramacionApp extends Application {
     }
 
     private void showMain() {
-        BorderPane root = new BorderPane();
-        root.setTop(header());
-        TabPane tabs = new TabPane(
-                tab("Clientes", clientesTab()),
-                tab("Automóviles", automovilesTab()),
-                tab("Asesores", asesoresTab()),
-                tab("Órdenes", ordenesTab()),
-                tab("Reportes", reportesTab())
-        );
-        root.setCenter(tabs);
+        BorderPane root = loadFxml("/fxml/main-view.fxml");
+        sessionLabel.setText("Sesión: " + asesorSesion.getNombreCompleto());
+        refreshButton.setOnAction(e -> actualizarDatos(refreshButton));
+        clientesMainTab.setContent(clientesTab());
+        automovilesMainTab.setContent(automovilesTab());
+        asesoresMainTab.setContent(asesoresTab());
+        ordenesMainTab.setContent(ordenesTab());
+        reportesMainTab.setContent(reportesTab());
         stage.setScene(scene(root, 1220, 760));
         stage.setMaximized(true);
+    }
+
+    private <T> T loadFxml(String resource) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(resource));
+            loader.setController(this);
+            return loader.load();
+        } catch (Exception ex) {
+            throw new IllegalStateException("No se pudo cargar la vista FXML: " + resource, ex);
+        }
     }
 
     private HBox header() {

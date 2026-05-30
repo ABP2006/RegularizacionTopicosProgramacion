@@ -66,4 +66,3 @@ public class Asesor extends Persona {
         this.passwordHash = passwordHash;
     }
 }
-

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="12" styleClass="header">
+            <children>
+                <VBox spacing="2">
+                    <children>
+                        <Label styleClass="header-title" text="Sistema de Órdenes de Reparación" />
+                        <Label fx:id="sessionLabel" styleClass="header-subtitle" text="Sesión:" />
+                    </children>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <Button fx:id="refreshButton" text="Actualizar" />
+            </children>
+        </HBox>
+    </top>
+    <center>
+        <TabPane>
+            <tabs>
+                <Tab fx:id="clientesMainTab" closable="false" text="Clientes" />
+                <Tab fx:id="automovilesMainTab" closable="false" text="Automóviles" />
+                <Tab fx:id="asesoresMainTab" closable="false" text="Asesores" />
+                <Tab fx:id="ordenesMainTab" closable="false" text="Órdenes" />
+                <Tab fx:id="reportesMainTab" closable="false" text="Reportes" />
+            </tabs>
+        </TabPane>
+    </center>
+</BorderPane>

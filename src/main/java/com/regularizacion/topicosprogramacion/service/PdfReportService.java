@@ -62,7 +62,7 @@ public class PdfReportService {
             page.y = section(page.content, "Automovil", page.y);
             page.y = lineText(page.content, "Vehiculo: " + vehicleLabel(orden, automovil), 60, page.y, true);
             if (automovil != null) {
-                page.y = lineText(page.content, "Color: " + value(automovil.getColor(), "N/D") + "    Anio-modelo: " + automovil.getAnioModelo() + "    Placas: " + value(automovil.getPlacas(), "N/D"), 60, page.y, false);
+                page.y = lineText(page.content, "Color: " + value(automovil.getColor(), "N/D") + "    Año-modelo: " + automovil.getAnioModelo() + "    Placas: " + value(automovil.getPlacas(), "N/D"), 60, page.y, false);
                 page.y = lineText(page.content, "Numero de serie: " + value(automovil.getNumeroSerie(), "N/D") + "    Kilometraje: " + orden.getKilometraje() + " km", 60, page.y, false);
             } else {
                 page.y = lineText(page.content, "Kilometraje: " + orden.getKilometraje() + " km", 60, page.y, false);
