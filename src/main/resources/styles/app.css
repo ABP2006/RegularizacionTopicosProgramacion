@@ -1,0 +1,65 @@
+.root {
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 13px;
+    -fx-background-color: #f4f6f8;
+}
+
+.header {
+    -fx-background-color: #1f2937;
+    -fx-padding: 14 18;
+}
+
+.header-title {
+    -fx-text-fill: white;
+    -fx-font-size: 19px;
+    -fx-font-weight: bold;
+}
+
+.header-subtitle {
+    -fx-text-fill: #d1d5db;
+}
+
+.toolbar {
+    -fx-background-color: #ffffff;
+    -fx-padding: 10;
+    -fx-spacing: 8;
+    -fx-border-color: #e5e7eb;
+    -fx-border-width: 0 0 1 0;
+}
+
+.panel {
+    -fx-background-color: white;
+    -fx-padding: 14;
+    -fx-border-color: #e5e7eb;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+}
+
+.section-title {
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+}
+
+.danger-button {
+    -fx-background-color: #b91c1c;
+    -fx-text-fill: white;
+}
+
+.primary-button {
+    -fx-background-color: #2563eb;
+    -fx-text-fill: white;
+}
+
+.success-button {
+    -fx-background-color: #047857;
+    -fx-text-fill: white;
+}
+
+.muted {
+    -fx-text-fill: #6b7280;
+}
+
+.field-label {
+    -fx-text-fill: #111827;
+    -fx-font-weight: bold;
+}

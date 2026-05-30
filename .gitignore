@@ -1,0 +1,9 @@
+﻿build/
+target/
+.gradle/
+*.class
+.idea/
+.vscode/
+*.iml
+src/main/resources/firebase/serviceAccountKey.json
+ordenes_pdf/
